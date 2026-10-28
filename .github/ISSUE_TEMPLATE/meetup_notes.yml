@@ -1,0 +1,28 @@
+name: Meetup notes
+description: Send notes for a meetup if you'd rather not open a pull request
+labels: [notes]
+body:
+  - type: input
+    id: date
+    attributes:
+      label: Meetup date
+      placeholder: 2026-10-24
+    validations:
+      required: true
+  - type: textarea
+    id: topics
+    attributes:
+      label: Topics and links
+      description: One topic per line, with the links you discussed
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything worth remembering from the discussion
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos
+      description: Drag photos here. Only include people who agreed to be posted.
