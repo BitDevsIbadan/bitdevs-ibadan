@@ -9,4 +9,4 @@ Special thanks to our sponsors whose donations help pay for venue rental, food, 
 
 - Btrust - [https://www.btrust.tech/](https://www.btrust.tech/)
 
-If you'd like to support BitDevs Ibadan, please [open an issue on GitHub](https://github.com/Dunsin-cyber/bitdevs-ibadan/issues) or reach out to the organizers at a meetup.
+If you'd like to support BitDevs Ibadan, please [open an issue on GitHub](https://github.com/BitDevsIbadan/bitdevs-ibadan/issues) or reach out to the organizers at a meetup.

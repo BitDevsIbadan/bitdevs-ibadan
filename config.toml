@@ -1,5 +1,5 @@
-# The URL the site is built for, change this once the domain is bought
-base_url = "/"
+# The URL the site is built for, preview builds override it with --base-url
+base_url = "https://bitdevsibadan.org"
 
 title = "BitDevsIbadan"
 description = "BitDevs Ibadan is a community in Ibadan, Nigeria, for anyone interested in discussing and participating in the research and development of Bitcoin and related protocols and software."
@@ -17,7 +17,7 @@ external_links_no_referrer = true
 
 [extra]
 # links shown in the header and footer, leave empty to hide
-github = "https://github.com/Dunsin-cyber/bitdevs-ibadan"
+github = "https://github.com/BitDevsIbadan/bitdevs-ibadan"
 x = "https://x.com/BitDevsIbadan"
 luma = ""
 clooza = "https://www.clooza.com/en/bitdevsibadan"
