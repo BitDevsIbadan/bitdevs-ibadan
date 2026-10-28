@@ -1,0 +1,33 @@
+// Typography
+$body-font: 'Source Code Pro', monospace;
+$base-font-size: 16px;
+
+// Colors
+$primary-color: #FF9900;
+
+// Screen size for responsiveness
+$small-screen: 400px;
+$mid-screen: 768px;
+$large-screen: 1024px;
+
+// light theme colors, the dark theme swaps them
+:root {
+  color-scheme: light;
+  --background-color: #FFF;
+  --font-color: #333;
+  --nav-color: #333;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background-color: #1B1B1B;
+  --font-color: #DDD;
+  --nav-color: #DDD;
+}
+
+@import './reset';
+@import './global';
+@import './header';
+@import './footer';
+@import './home';
+@import './post';

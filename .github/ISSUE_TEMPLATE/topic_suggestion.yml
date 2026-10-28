@@ -1,0 +1,27 @@
+name: Suggest a topic
+description: Suggest something to discuss at the next Socratic seminar
+labels: [topic]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The pull request, mailing list post, paper or article
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options:
+        - General News
+        - Mailing List Posts
+        - Delving Bitcoin Posts
+        - Bitcoin Core
+        - Lightning
+        - Other
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it's worth discussing
+      description: A sentence or two is enough

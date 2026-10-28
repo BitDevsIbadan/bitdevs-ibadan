@@ -1,0 +1,26 @@
+{% set venue = config.extra %}
+<div class="Location">
+    <h3>Location</h3>
+    <p>
+        {{ venue.venue_name }}, {{ venue.venue_address }}
+        {% if venue.venue_hint %}<br>{{ venue.venue_hint }}{% endif %}
+    </p>
+    {# google maps starts directions from the visitor's current location #}
+    {% if venue.venue_lat is defined and venue.venue_lng is defined %}
+    {% set destination = venue.venue_lat ~ "," ~ venue.venue_lng %}
+    {% else %}
+    {% set place = venue.venue_name ~ ", " ~ venue.venue_address %}
+    {% set destination = place | urlencode %}
+    {% endif %}
+    <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ destination }}" target="_blank" rel="noopener nofollow">Get directions</a></p>
+    {% if venue.venue_lat is defined and venue.venue_lng is defined %}
+    {# a small box around the venue for the map view #}
+    {% set west = venue.venue_lng - 0.006 %}
+    {% set east = venue.venue_lng + 0.006 %}
+    {% set south = venue.venue_lat - 0.004 %}
+    {% set north = venue.venue_lat + 0.004 %}
+    <iframe class="Location-map" title="Map of {{ venue.venue_name }}" loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox={{ west | round(precision=5) }},{{ south | round(precision=5) }},{{ east | round(precision=5) }},{{ north | round(precision=5) }}&layer=mapnik&marker={{ venue.venue_lat }},{{ venue.venue_lng }}"></iframe>
+    {% endif %}
+    <hr>
+</div>

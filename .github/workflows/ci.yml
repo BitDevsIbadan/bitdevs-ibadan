@@ -14,14 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v7
+      # keep this version in step with the hosting build settings
+      - uses: taiki-e/install-action@v2
         with:
-          node-version-file: .nvmrc
-          cache: npm
+          tool: zola@0.23.6
 
-      - run: npm ci
+      # catches broken internal links and bad front matter
+      - run: zola check --skip-external-links
 
-      # type check catches missing or wrong meetup frontmatter
-      - run: npx astro check
-
-      - run: npm run build
+      - run: zola build

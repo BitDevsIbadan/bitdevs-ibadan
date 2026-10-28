@@ -1,103 +1,99 @@
 # Contributing to BitDevs Ibadan
 
-Thanks for helping out. There are three common ways to contribute:
+Thanks for helping out. The most common contributions are:
 
-1. **Add notes for a meetup** (the most common)
-2. **Fix something**, like a typo, a broken link, or a wrong date
-3. **Improve the site**, like its design, pages, or accessibility
+1. **Posting the topics for a meetup**
+2. **Fixing something**, like a typo, a broken link, or a wrong date
+3. **Suggesting a topic** for the next seminar, by opening an issue
+4. **Improving the site**, like its design or accessibility
 
-You don't need to be a web developer for the first two.
+You don't need to be a web developer for the first three.
 
-## Adding notes for a meetup
+## Posting a meetup
 
-Each meetup gets its own folder under `src/content/meetups/`, named `YYYY-MM-short-topic`:
+Each meetup is one Markdown file in `content/`, named with the meetup date:
 
 ```
-src/content/meetups/2026-10-silent-payments/
-  index.md
-  cover.jpg
-  group.jpg
+content/2026-10-31-socratic-seminar-1.md
 ```
 
-Copy this into `index.md` and fill it in:
+Start the file with this block, then list the topics in Markdown:
 
 ```md
----
-title: "Socratic Seminar #12"
-date: 2026-10-24
-summary: "Silent payments, the mempool policy debate, and a Lightning bug postmortem."
-cover: ./cover.jpg
-coverAlt: "Attendees around the table at the October meetup"
-topics:
-  - title: "Silent payments (BIP 352)"
-    links:
-      - https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki
-  - title: "Mempool policy debate"
-    links:
-      - https://bitcoinops.org/
-photos:
-  - src: ./group.jpg
-    alt: "Group photo after the session"
++++
+title = "Socratic Seminar #1"
+template = "post.html"
+[extra]
+luma = "https://lu.ma/your-event"
++++
+
+### Announcements
+
+Short welcome note, thanks to sponsors and hosts.
+
 ---
 
-Short write up of what we discussed and any questions left open for next time.
+### Mailing List Posts
+
+* [Title of the post](https://groups.google.com/g/bitcoindev/...)
+
+---
+
+### Bitcoin Core
+
+* [Title of the pull request](https://github.com/bitcoin/bitcoin/pull/...)
 ```
 
-### Rules for photos
+The venue, map and directions are added automatically from `config.toml`, so you don't need to repeat them in each post. `luma` is optional; leave it out if there's no event page.
 
-- **Get consent** from anyone clearly identifiable before posting their photo. The git history keeps files forever, even after you delete them.
-- **Keep each photo under about 500KB.** Resize to around 1600px wide before committing. [Squoosh](https://squoosh.app) does this in the browser.
-- **Always write alt text**, a short description of the photo for people using screen readers.
-- Use `.jpg` for photos and lowercase file names with no spaces.
+Use the same sections as other BitDevs chapters where they fit: General News, Mailing List Posts, Delving Bitcoin Posts, Bitcoin Core, Lightning, and so on. To prepare a meetup in advance without publishing it, add `draft = true` under `template` and remove it when it's ready. Until a post is published, the home page shows the next last Saturday of the month as the upcoming meetup on its own.
 
-### Rules for notes
+### Rules for topics
 
-- Link to primary sources where you can, like BIPs, mailing list posts, or PRs.
-- Don't attribute opinions to named people unless they're fine with it. We use the Socratic format so people can think out loud.
+- Link to primary sources where you can, like BIPs, mailing list posts, or pull requests.
+- We follow the [Chatham House Rule](https://www.chathamhouse.org/about-us/chatham-house-rule): don't attribute what was said at a meetup to a named person.
 
 ## Making the change
 
 **On GitHub, without installing anything:**
 
-1. Go to `src/content/meetups/` on GitHub and choose **Add file → Create new file**.
-2. Type `2026-10-your-topic/index.md` as the name. The slash creates the folder.
-3. Paste and fill in the template, then choose **Propose changes**.
-4. Upload photos into the same folder with **Add file → Upload files**.
-5. Open the pull request.
+1. Go to the `content` folder on GitHub and choose **Add file → Create new file**.
+2. Name it `YYYY-MM-DD-socratic-seminar-N.md`.
+3. Paste and fill in the template above, then choose **Propose changes** and open the pull request.
 
 **Locally:**
 
 ```sh
-git checkout -b notes/2026-10
-npm install
-npm run dev          # preview at http://localhost:4321
-npm run build        # make sure it builds before you push
-git add src/content/meetups/2026-10-your-topic
-git commit -m "notes: add October 2026 meetup"
-git push origin notes/2026-10
+git checkout -b post/seminar-1
+zola serve --drafts      # preview at http://localhost:1111
+zola check --skip-external-links
+git add content/2026-10-31-socratic-seminar-1.md
+git commit -m "post: add Socratic Seminar #1"
+git push origin post/seminar-1
 ```
 
 Then open a pull request. Two things happen automatically:
 
-- **The CI check** builds the site. If your frontmatter is missing a field, the check fails and tells you which one.
-- **A preview link is posted** as a comment on the pull request. Open it to see exactly how your notes and photos will look before anything goes live.
+- **The CI check** builds the site. If the file name or the block at the top is wrong, the check fails.
+- **A preview link is posted** as a comment on the pull request. Open it to see exactly how the page will look before anything goes live.
 
 ## Code changes
 
 - Open an issue first for anything bigger than a small fix so we can agree on the approach.
 - Keep pull requests focused on one change.
-- Make sure `npm run build` passes.
-- Keep the site light: no backend, no tracking scripts, and only add JavaScript where a page needs it.
+- Make sure `zola build` passes.
+- Keep the site light: no tracking scripts, and only add JavaScript where a page needs it.
+- Templates live in `templates/`, styles in `sass/`, and colors for light and dark mode at the top of `sass/style.scss`.
 
 ## Commit messages
 
 Use a short prefix so the history stays easy to scan:
 
-- `notes:` for meetup content
+- `post:` for meetup pages
 - `fix:` for bug fixes
 - `feat:` for new pages or features
 - `docs:` for README or guide changes
-- `chore:` for dependencies and tooling
+- `chore:` for tooling and dependencies
 
 ## Questions
 
