@@ -21,6 +21,7 @@ github = "https://github.com/BitDevsIbadan/bitdevs-ibadan"
 x = "https://x.com/BitDevsIbadan"
 luma = ""
 clooza = "https://www.clooza.com/en/bitdevsibadan"
+whatsapp = "https://chat.whatsapp.com/C3wKiZjUH7c1PoKVT6IxjQ?mode=gi_t"
 
 # start time of every meetup, a post can override it with time in [extra]
 meetup_time = "3:00 PM"

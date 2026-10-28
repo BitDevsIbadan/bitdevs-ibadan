@@ -14,6 +14,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 0.25rem 1.5rem;
   }
 
   &-logo {
@@ -26,17 +27,25 @@
 
   &-nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 0 1.5rem;
     font-size: 1.3rem;
+
+    @media (max-width: $mid-screen) {
+      gap: 0 1.1rem;
+    }
 
     @media (max-width: $small-screen) {
       font-size: 1.1rem;
     }
 
     a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       color: var(--nav-color);
       opacity: 0.4;
-      margin-left: 1.5rem;
 
       &:hover {
         color: $primary-color;
@@ -46,6 +55,14 @@
   }
 }
 
+// words on wide screens, icons on phones so the nav fits on one line
+.Header-nav-icon { display: none; }
+
+@media (max-width: $mid-screen) {
+  .Header-nav-icon { display: block; }
+  .Header-nav-label { display: none; }
+}
+
 // icon button that matches the nav links
 .ThemeToggle {
   display: inline-flex;
@@ -53,7 +70,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  margin-left: 0.75rem;
+  margin-left: -10px;
   border: 0;
   background: none;
   color: var(--nav-color);

@@ -11,17 +11,30 @@
 
   &-inner {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 0.5rem 1.5rem;
 
     a {
       color: var(--nav-color);
       opacity: 0.4;
-      margin-left: 1rem;
+      white-space: nowrap;
 
       &:hover {
         color: $primary-color;
         opacity: 1;
       }
     }
+
+    // stack the two groups on phones
+    @media (max-width: $small-screen) {
+      flex-direction: column;
+    }
+  }
+
+  &-rss {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
   }
 }
